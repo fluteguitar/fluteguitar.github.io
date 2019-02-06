@@ -7,7 +7,7 @@
   <meta name="keyword" content="">
   <title>
     
-      Zenzj&#39;s blog
+      Project | Zenzj&#39;s blog
     
   </title>
   <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
@@ -50,10 +50,7 @@
             <!-- <span class="tooltiptext">🏠</span> -->
 
             
-                  
-            <a href="/" class="item-link active">🏠</a>
-          <!-- </div> -->
-
+            <a href="/" class="item-link">🏠</a>
           
         </li>
       
@@ -86,7 +83,7 @@
         
           <li class="menu-item">
             
-              <a href="/" class="menu-link mobile-active">🏠</a>
+              <a href="/" class="menu-link">🏠</a>
             
           </li>
         
@@ -107,67 +104,60 @@
   </div>
 </header>
 
-    
-
-    <div class="sidebar box-right">
-      <aside id="sidebar">
-    
-    <div>
-        <div>
-            <ul>
-                
-                    <li>
-
-                         <div class="tooltip">
-                            <a class="side-link" href="/archives/">📗</a>
-                            <span class="tooltiptext">Archive</span>
-                        </div> 
-                    </li>
-                
-                    <li>
-
-                         <div class="tooltip">
-                            <a class="side-link" href="/projects/">💻</a>
-                            <span class="tooltiptext">Project</span>
-                        </div> 
-                    </li>
-                
-                    <li>
-
-                         <div class="tooltip">
-                            <a class="side-link" href="/about/">👨🏻‍💻</a>
-                            <span class="tooltiptext">About</span>
-                        </div> 
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-</aside>
-
-    </div>
-  
-
-<main class="app-body">
-
-    
-    <article class="article-card" dir="">
-      <h2 class="article-head">
-        <a href="/2019/02/06/hello-world/">Hello World</a>
-      </h2>
-      
-      <p class="article-date">February 6, 2019</p>
-
-    </article>
-  
-
-
-
-  
+    <div id="article-banner">
+  <h2>Projects</h2>
+</div>
+<main class="app-body project-app">
+  <div class="card-container" id="all-project"></div>
 </main>
-
+<script>
+  (function() {
+    var listProjectName = 'amazing-vietnam-moment-vue-cli,amazing-vietnam-moment';
+    var url = 'http://zenzjtech.github.io/projects/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header')
+    $.ajax({
+      headers: {
+        Accept: 'application/vnd.github.v3.raw'
+      },
+      type: 'get',
+      url: 'https://api.github.com/users/zenzjtech/repos',
+      success: function (data) {
+        data = data.filter(item => listProjectName.includes(item.name));
+        // console.log(data);
+        var repos = data.sort(function(a, b) {
+          return (b.stargazers_count - a.stargazers_count)
+        }).slice(0, 6)
+        // console.log(repos);
+        var cardHtml = repos.map(function(item) {
+          var description = item.description
+          if (description)
+            if (description.replace(/[\u0391-\uFFE5]/g, "aa").length > 72) {
+              description = description.slice(0, 72) + '...'
+            }
+          return (
+            '<section class="project-card">' +
+              '<a class="card-wrap" href="'+ item.html_url +'" target="_blank">' +
+                '<div class="card-header" data-name="'+ item.name +'"></div>' +
+                '<h3 class="card-title">' + item.name + '</h3>' +
+                '<p class="card-description">' + description + '</p>' +
+                '<div class="card-footer">' +
+                  '<span><i class="fa fa-star"></i>'+ item.stargazers_count +'</span>' +
+                  '<span><i class="fa fa-code-fork"></i>' + item.forks_count +'</span>' +
+                '</div>' +
+              '</a>' +
+            '</section>'
+          )
+        }).join('')
+        $('#all-project').html(cardHtml)
+        $('.card-header').each(function() {
+          var name = $(this).data('name');
+          $(this).geopattern(name);
+        })
+      }
+    });
+  })()
+</script>
 
     <div class="scroll-top">
   <span class="arrow-icon"></span>

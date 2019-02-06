@@ -7,7 +7,7 @@
   <meta name="keyword" content="">
   <title>
     
-      Zenzj&#39;s blog
+      About | Zenzj&#39;s blog
     
   </title>
   <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
@@ -50,10 +50,7 @@
             <!-- <span class="tooltiptext">🏠</span> -->
 
             
-                  
-            <a href="/" class="item-link active">🏠</a>
-          <!-- </div> -->
-
+            <a href="/" class="item-link">🏠</a>
           
         </li>
       
@@ -86,7 +83,7 @@
         
           <li class="menu-item">
             
-              <a href="/" class="menu-link mobile-active">🏠</a>
+              <a href="/" class="menu-link">🏠</a>
             
           </li>
         
@@ -107,67 +104,74 @@
   </div>
 </header>
 
-    
+    <div id="about-banner"></div>
+<div class="author">
+  <div class="head">
+    <img src="https://avatars0.githubusercontent.com/u/10528635?s=400&u=a1d2bd6232732210afa078aef0e25ff0b8536805&v=4">
+  </div>
+  <h3>Toan (Zenzj) Nguyen</h3>
 
-    <div class="sidebar box-right">
-      <aside id="sidebar">
-    
-    <div>
-        <div>
-            <ul>
-                
-                    <li>
+<div id="about-introduction">
+    <p>
+        Greeting, friends! My name is Toan
+        (全 in Chinese, zen in Japanese, which means wholeness, completeness or perfection).
+      <br>
+        My expertise is building business enterprise system. I use Node.js for backend and Vue.js for frontend development.
+      <br>
+        In my free time, I build web extensions as a hobby. The decision to choose web platform
+        instead of mobile platform originates from  the fact that I leverage lots of web extension for my need and the
+        rare usage of mobile apps.
+    </p>
+</div>
 
-                         <div class="tooltip">
-                            <a class="side-link" href="/archives/">📗</a>
-                            <span class="tooltiptext">Archive</span>
-                        </div> 
-                    </li>
-                
-                    <li>
-
-                         <div class="tooltip">
-                            <a class="side-link" href="/projects/">💻</a>
-                            <span class="tooltiptext">Project</span>
-                        </div> 
-                    </li>
-                
-                    <li>
-
-                         <div class="tooltip">
-                            <a class="side-link" href="/about/">👨🏻‍💻</a>
-                            <span class="tooltiptext">About</span>
-                        </div> 
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-
-</aside>
-
-    </div>
-  
-
-<main class="app-body">
+    <section class="share-icons">
 
     
-    <article class="article-card" dir="">
-      <h2 class="article-head">
-        <a href="/2019/02/06/hello-world/">Hello World</a>
-      </h2>
-      
-      <p class="article-date">February 6, 2019</p>
+      <a class="icon-github" href="https://github.com/zenzjtech" target="_blank">
+        <span class="fa-stack fa">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    
+    
+      <a class="icon-stackoverflow" href="https://stackoverflow.com/users/2464237/c%e1%ba%a3nh-to%c3%a0n-nguy%e1%bb%85n" target="_blank">
+        <span class="fa-stack fa">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    
+    
+    
+     
+     
+      <a class="icon-linkedin" href="https://www.linkedin.com/in/toannc-6b974ab8/" target="_blank">
+        <span class="fa-stack fa">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    
+  </section>
+</div>
 
-    </article>
-  
+<script>
+  (function () {
+    var url = 'http://zenzjtech.github.io/about/index.html';
+    $('#about-banner').geopattern(url)
 
-
-
-  
-</main>
-
+    $('.header').removeClass('fixed-header')
+    var windowH = $(window).height();
+    var author = $('.author')
+    var bodyH = author.offset().top + author[0].offsetHeight + 71;
+    if (bodyH < windowH) {
+      author.css({
+        'margin-bottom': windowH - bodyH
+      })
+    }
+  })();
+</script>
 
     <div class="scroll-top">
   <span class="arrow-icon"></span>
